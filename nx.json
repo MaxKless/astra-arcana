@@ -71,6 +71,16 @@
   "targetDefaults": {
     "test": {
       "dependsOn": ["^build"]
+    },
+    "@nx/esbuild:esbuild": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "{projectRoot}/dist"
+      }
     }
   },
   "generators": {
@@ -88,6 +98,20 @@
         "style": "tailwind",
         "linter": "eslint"
       }
+    }
+  },
+  "release": {
+    "projects": ["mcp-server"],
+    "version": {
+      "preVersionCommand": "npx nx run mcp-server:setup-publish",
+      "manifestRootsToUpdate": [
+        "{projectRoot}",
+        "{projectRoot}/dist"
+      ]
+    },
+    "changelog": {
+      "projectChangelogs": true,
+      "workspaceChangelog": false
     }
   }
 }

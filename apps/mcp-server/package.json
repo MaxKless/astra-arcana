@@ -1,0 +1,67 @@
+{
+  "name": "@astra-arcana/mcp-server",
+  "version": "1.0.4",
+  "type": "module",
+  "access": "public",
+  "bin": "main.js",
+  "nx": {
+    "name": "mcp-server",
+    "implicitDependencies": [
+      "api"
+    ],
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "defaultConfiguration": "production",
+        "options": {
+          "platform": "node",
+          "outputPath": "apps/mcp-server/dist",
+          "format": [
+            "esm"
+          ],
+          "bundle": true,
+          "thirdParty": true,
+          "main": "apps/mcp-server/src/main.ts",
+          "tsConfig": "apps/mcp-server/tsconfig.app.json",
+          "assets": [
+            "apps/mcp-server/src/assets"
+          ],
+          "esbuildOptions": {
+            "sourcemap": true,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        },
+        "configurations": {
+          "development": {},
+          "production": {
+            "esbuildOptions": {
+              "sourcemap": false,
+              "outExtension": {
+                ".js": ".js"
+              }
+            }
+          }
+        }
+      },
+      "serve": {
+        "command": "npx -y @modelcontextprotocol/inspector node ./apps/mcp-server/dist/main.js",
+        "continuous": true,
+        "dependsOn": [
+          "build",
+          "^dev"
+        ]
+      },
+      "setup-publish": {
+        "command": "node apps/mcp-server/setup-publish.js",
+        "dependsOn": [
+          "build"
+        ]
+      }
+    }
+  }
+}
