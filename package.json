@@ -22,6 +22,7 @@
     "@nx/react": "21.0.2",
     "@nx/vite": "21.0.2",
     "@nx/web": "21.0.2",
+    "@nx/webpack": "^21.0.2",
     "@nx/workspace": "21.0.2",
     "@swc-node/register": "~1.9.1",
     "@swc/cli": "~0.6.0",

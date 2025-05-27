@@ -1,6 +1,7 @@
 {
-	"files.associations": {
-		"wrangler.json": "jsonc"
-	},
-	"editor.formatOnSave": true
+  "files.associations": {
+    "wrangler.json": "jsonc"
+  },
+  "editor.formatOnSave": true,
+  "nxConsole.generateAiAgentRules": true
 }
