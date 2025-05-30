@@ -49,3 +49,4 @@ vitest.config.*.timestamp*
 .cursor/rules/nx-rules.mdc
 .cursor/mcp.json
 .github/instructions/nx.instructions.md
+.intellijPlatform
