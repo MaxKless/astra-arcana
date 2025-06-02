@@ -1,9 +1,9 @@
 plugins {
-    id("dev.nx.gradle.project-graph") version("0.1.0")
     id("java")
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.serialization") version "1.9.25"
     id("org.jetbrains.intellij.platform") version "2.3.0"
+    id("dev.nx.gradle.project-graph") version("0.1.0")
 }
 
 group = "com.astra-arcana"
@@ -20,7 +20,7 @@ repositories {
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
 dependencies {
     implementation(project(":spellcasting-sdk-kotlin"))
-    
+
     intellijPlatform {
         create("IC", "2024.2.5")
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
@@ -53,12 +53,12 @@ tasks {
     }
 }
 
-allprojects {
+
+allprojects {
     apply {
-        plugin("dev.nx.gradle.project-graph")
         plugin("kotlin")
     }
-    
+
     repositories {
         mavenCentral()
     }
