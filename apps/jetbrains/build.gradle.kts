@@ -1,7 +1,8 @@
 plugins {
     id("dev.nx.gradle.project-graph") version("0.1.0")
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
+    kotlin("jvm") version "1.9.25"
+    kotlin("plugin.serialization") version "1.9.25"
     id("org.jetbrains.intellij.platform") version "2.3.0"
 }
 
@@ -53,5 +54,10 @@ tasks {
 allprojects {
     apply {
         plugin("dev.nx.gradle.project-graph")
+        plugin("kotlin")
     }
-  }
+    
+    repositories {
+        mavenCentral()
+    }
+}
