@@ -41,5 +41,12 @@
                 description="Fetch and log ingredients from the Astra Arcana API">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
+        
+        <action id="AstraArcana.CastSpell"
+                class="com.astraarcana.jetbrains.actions.SimpleSpellCastAction"
+                text="Cast Test Spell"
+                description="Cast a simple test spell and log the results">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
     </actions>
 </idea-plugin>

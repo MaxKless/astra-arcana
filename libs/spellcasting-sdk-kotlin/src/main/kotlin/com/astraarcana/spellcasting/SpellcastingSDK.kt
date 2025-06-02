@@ -164,6 +164,164 @@ class SpellcastingSDK(
     }
     
     /**
+     * Validates that all ingredient names exist and returns their full objects.
+     * 
+     * @param names List of ingredient names to validate
+     * @return List of validated ingredients
+     * @throws IngredientError if any ingredient name is not found
+     */
+    suspend fun validateIngredients(names: List<String>): List<Ingredient> {
+        val allIngredients = getIngredients()
+        val ingredientsByName = allIngredients.associateBy { it.name.lowercase() }
+        
+        return names.map { name ->
+            ingredientsByName[name.lowercase()] 
+                ?: throw IngredientError("Ingredient not found: $name")
+        }
+    }
+    
+    /**
+     * Validates that all incantation names exist and returns their full objects.
+     * 
+     * @param names List of incantation names to validate
+     * @return List of validated incantations
+     * @throws IncantationError if any incantation name is not found
+     */
+    suspend fun validateIncantations(names: List<String>): List<Incantation> {
+        val allIncantations = getIncantations()
+        val incantationsByName = allIncantations.associateBy { it.name.lowercase() }
+        
+        return names.map { name ->
+            incantationsByName[name.lowercase()] 
+                ?: throw IncantationError("Incantation not found: $name")
+        }
+    }
+    
+    /**
+     * Finds an ingredient by name (case-insensitive).
+     * 
+     * @param name The ingredient name to search for
+     * @return The ingredient if found, null otherwise
+     */
+    suspend fun findIngredientByName(name: String): Ingredient? {
+        return getIngredients().find { it.name.equals(name, ignoreCase = true) }
+    }
+    
+    /**
+     * Finds an incantation by name (case-insensitive).
+     * 
+     * @param name The incantation name to search for
+     * @return The incantation if found, null otherwise
+     */
+    suspend fun findIncantationByName(name: String): Incantation? {
+        return getIncantations().find { it.name.equals(name, ignoreCase = true) }
+    }
+    
+    /**
+     * Casts a spell using ingredient and incantation names.
+     * 
+     * @param ingredientNames List of ingredient names
+     * @param incantationNames List of incantation names
+     * @return The result of the spell cast
+     * @throws ApiError if the request fails
+     * @throws IngredientError if any ingredient is invalid
+     * @throws IncantationError if any incantation is invalid
+     */
+    suspend fun castSpellByNames(
+        ingredientNames: List<String>, 
+        incantationNames: List<String>
+    ): CastSpellResponse {
+        return try {
+            val response: HttpResponse = httpClient.post("$apiUrl/api/cast") {
+                setBody(CastSpellRequest(ingredientNames, incantationNames))
+            }
+            
+            if (!response.status.isSuccess()) {
+                throw ApiError(
+                    "Failed to cast spell: ${response.status.description}",
+                    statusCode = response.status.value
+                )
+            }
+            
+            response.body<CastSpellResponse>()
+        } catch (e: Exception) {
+            when (e) {
+                is ApiError -> throw e
+                else -> throw ApiError("Failed to cast spell", cause = e)
+            }
+        }
+    }
+    
+    /**
+     * Casts a spell using ingredient and incantation objects.
+     * 
+     * @param ingredients List of ingredients
+     * @param incantations List of incantations
+     * @return The result of the spell cast
+     * @throws ApiError if the request fails
+     */
+    suspend fun castSpell(
+        ingredients: List<Ingredient>, 
+        incantations: List<Incantation>
+    ): CastSpellResponse {
+        return castSpellByNames(
+            ingredients.map { it.name },
+            incantations.map { it.name }
+        )
+    }
+    
+    /**
+     * Visualizes a spell without casting it using ingredient and incantation names.
+     * 
+     * @param ingredientNames List of ingredient names
+     * @param incantationNames List of incantation names
+     * @return Visualization data for the spell
+     * @throws ApiError if the request fails
+     */
+    suspend fun visualizeSpellByNames(
+        ingredientNames: List<String>, 
+        incantationNames: List<String>
+    ): SpellVisualizationData {
+        return try {
+            val response: HttpResponse = httpClient.post("$apiUrl/api/visualize") {
+                setBody(VisualizeSpellRequest(ingredientNames, incantationNames))
+            }
+            
+            if (!response.status.isSuccess()) {
+                throw ApiError(
+                    "Failed to visualize spell: ${response.status.description}",
+                    statusCode = response.status.value
+                )
+            }
+            
+            response.body<SpellVisualizationData>()
+        } catch (e: Exception) {
+            when (e) {
+                is ApiError -> throw e
+                else -> throw ApiError("Failed to visualize spell", cause = e)
+            }
+        }
+    }
+    
+    /**
+     * Visualizes a spell without casting it using ingredient and incantation objects.
+     * 
+     * @param ingredients List of ingredients
+     * @param incantations List of incantations
+     * @return Visualization data for the spell
+     * @throws ApiError if the request fails
+     */
+    suspend fun visualizeSpell(
+        ingredients: List<Ingredient>, 
+        incantations: List<Incantation>
+    ): SpellVisualizationData {
+        return visualizeSpellByNames(
+            ingredients.map { it.name },
+            incantations.map { it.name }
+        )
+    }
+    
+    /**
      * Closes the HTTP client and releases resources.
      * Should be called when the SDK is no longer needed.
      */
