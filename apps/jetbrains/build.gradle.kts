@@ -26,7 +26,7 @@ dependencies {
         intellijIdeaUltimate("2025.1")
 
         // Add necessary plugin dependencies for compilation here, example:
-        // bundledPlugin("com.intellij.java")
+         bundledPlugin("JavaScript")
     }
 }
 
@@ -42,6 +42,9 @@ intellijPlatform {
     }
 }
 
+// Define source location of built language server
+val languageServerRoot = "${rootDir}/../language-server/dist"
+
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
@@ -50,6 +53,13 @@ tasks {
     }
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions.jvmTarget = "21"
+    }
+
+    prepareSandbox {
+        from(languageServerRoot) {
+            include("main.js")
+            into(intellijPlatform.projectName.map { "$it/language-server" }.get())
+        }
     }
 }
 
