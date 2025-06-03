@@ -1,6 +1,6 @@
-package com.astraarcana.spellcasting.api
+package spellcasting.api
 
-import com.astraarcana.spellcasting.types.*
+import spellcasting.types.*
 
 data class IngredientFilter(
     val name: String? = null,

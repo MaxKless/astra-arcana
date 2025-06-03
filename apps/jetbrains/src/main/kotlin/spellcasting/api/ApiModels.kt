@@ -1,7 +1,7 @@
-package com.astraarcana.spellcasting.api
+package spellcasting.api
 
-import com.astraarcana.spellcasting.types.*
 import kotlinx.serialization.Serializable
+import spellcasting.types.*
 
 @Serializable
 data class IngredientsResponse(

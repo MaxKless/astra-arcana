@@ -1,8 +1,8 @@
 plugins {
     id("java")
-    kotlin("jvm") version "1.9.25"
-    kotlin("plugin.serialization") version "1.9.25"
-    id("org.jetbrains.intellij.platform") version "2.3.0"
+    kotlin("jvm") version "2.0.20"
+    kotlin("plugin.serialization") version "2.0.20"
+    id("org.jetbrains.intellij.platform") version "2.6.0"
     id("dev.nx.gradle.project-graph") version("0.1.0")
 }
 
@@ -19,11 +19,11 @@ repositories {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
 dependencies {
-    implementation(project(":spellcasting-sdk-kotlin"))
+
+  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
 
     intellijPlatform {
-        create("IC", "2024.2.5")
-        testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
+        intellijIdeaUltimate("2025.1")
 
         // Add necessary plugin dependencies for compilation here, example:
         // bundledPlugin("com.intellij.java")

@@ -1,4 +1,4 @@
-package com.astraarcana.spellcasting.types
+package spellcasting.types
 
 object Constants {
     val ELEMENTAL_RELATIONSHIPS = mapOf(

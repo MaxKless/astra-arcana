@@ -1,4 +1,4 @@
-package com.astraarcana.spellcasting.exceptions
+package spellcasting.exceptions
 
 open class SpellcastingException(message: String, cause: Throwable? = null) : Exception(message, cause)
 

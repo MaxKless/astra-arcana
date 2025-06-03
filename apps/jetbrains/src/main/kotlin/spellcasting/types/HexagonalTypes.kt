@@ -1,4 +1,4 @@
-package com.astraarcana.spellcasting.types
+package spellcasting.types
 
 import kotlinx.serialization.Serializable
 

@@ -1,4 +1,4 @@
-package com.astraarcana.spellcasting.types
+package spellcasting.types
 
 // Re-export all types from this package for easier imports
 typealias SpellcastingElement = Element
