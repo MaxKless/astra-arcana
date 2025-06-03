@@ -10,7 +10,10 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
@@ -30,6 +33,22 @@
     "test": "vscode-test"
   },
   "nx": {
-    "name": "vscode"
+    "name": "vscode",
+    "implicitDependencies": [
+      "@astra-arcana/language-server"
+    ],
+    "targets": {
+      "copy-language-server": {
+        "command": "mkdir -p apps/vscode/dist/language-server && cp apps/language-server/dist/main.js apps/vscode/dist/language-server/main.js",
+        "dependsOn": [
+          "^build"
+        ]
+      },
+      "build": {
+        "dependsOn": [
+          "copy-language-server"
+        ]
+      }
+    }
   }
 }
