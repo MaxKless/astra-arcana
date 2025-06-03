@@ -90,3 +90,5 @@ bin/
 /nbdist/
 /.nb-gradle/
 
+
+test-output
