@@ -1,12 +1,9 @@
 {
   "name": "@astra-arcana/web",
   "version": "0.0.1",
-  "private": true, 
+  "private": true,
   "nx": {
     "name": "web",
-    "implicitDependencies": [
-      "api"
-    ],
     "targets": {
       "build": {
         "dependsOn": [
@@ -19,7 +16,7 @@
           "cwd": "apps/web"
         },
         "dependsOn": [
-         "build",
+          "build",
           "^deploy"
         ]
       },

@@ -13,6 +13,9 @@
     "./package.json": "./package.json"
   },
   "nx": {
+    "implicitDependencies": [
+      "api"
+    ],
     "name": "spellcasting-sdk",
     "sourceRoot": "src"
   }
