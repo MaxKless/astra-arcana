@@ -34,6 +34,8 @@
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
   <extensions defaultExtensionNs="com.intellij">
     <notificationGroup displayType="STICKY_BALLOON" id="Astra Arcana"/>
+    <platform.lsp.serverSupportProvider
+      implementation="com.astraarcana.jetbrains.lsp.AstraArcanaLspServerSupportProvider"/>
   </extensions>
 
 
