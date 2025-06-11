@@ -3,6 +3,9 @@
   "files": [],
   "references": [
     {
+      "path": "../../libs/spellcasting-sdk"
+    },
+    {
       "path": "./tsconfig.app.json"
     }
   ]
