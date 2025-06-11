@@ -34,17 +34,8 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
       <notificationGroup displayType="STICKY_BALLOON" id="Astra Arcana"/>
-      <platform.lsp.serverSupportProvider implementation="com.astraarcana.jetbrains.lsp.AstraArcanaLspServerSupportProvider"/>
     </extensions>
 
-    <actions>
-        <action id="AstraArcana.CastSpell"
-                class="com.astraarcana.jetbrains.actions.SpellCastAction"
-                text="Cast Spell"
-                description="Cast a spell.">
-            <add-to-group group-id="ToolsMenu" anchor="last"/>
-        </action>
-    </actions>
 
 
 </idea-plugin>
