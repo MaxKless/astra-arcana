@@ -32,7 +32,7 @@
   "nx": {
     "name": "vscode",
     "implicitDependencies": [
-      "@astra-arcana/language-server"
+      "language-server"
     ],
     "targets": {
       "copy-language-server": {
