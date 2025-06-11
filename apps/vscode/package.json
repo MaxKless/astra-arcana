@@ -10,10 +10,6 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onLanguage:typescript",
-    "onLanguage:typescriptreact"
-  ],
   "main": "./extension.js",
   "contributes": {},
   "scripts": {
