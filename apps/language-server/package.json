@@ -1,0 +1,14 @@
+{
+  "name": "@astra-arcana/language-server",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "targets": {
+      "test": {
+        "options": {
+          "passWithNoTests": true
+        }
+      }
+    }
+  }
+}

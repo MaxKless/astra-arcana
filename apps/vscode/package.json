@@ -30,6 +30,22 @@
     "test": "vscode-test"
   },
   "nx": {
-    "name": "vscode"
+    "name": "vscode",
+    "implicitDependencies": [
+      "@astra-arcana/language-server"
+    ],
+    "targets": {
+      "copy-language-server": {
+        "command": "mkdir -p apps/vscode/dist/language-server && cp apps/language-server/dist/main.js apps/vscode/dist/language-server/main.js",
+        "dependsOn": [
+          "^build"
+        ]
+      },
+      "build": {
+        "dependsOn": [
+          "copy-language-server"
+        ]
+      }
+    }
   }
 }
