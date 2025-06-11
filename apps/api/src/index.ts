@@ -1,7 +1,10 @@
-import { Incantation, Ingredient } from '@astra-arcana/spellcasting-types';
+import {
+  CompleteSpellResult,
+  Incantation,
+  Ingredient,
+} from '@astra-arcana/spellcasting-types';
 import { defaultIncantations, defaultIngredients } from './default-data';
 import { defaultRecipes } from './default-recipes';
-import { CompleteSpellResult } from './hexagonal-spellcasting/types';
 import { calculateCompleteSpellResult } from './hexagonal-spellcasting/calculator';
 import { generateVisualizationData } from './hexagonal-spellcasting/visualization';
 
@@ -69,11 +72,16 @@ export default {
         const { ingredients = [], incantations = [] } = data;
 
         // Calculate spell result using the hexagonal spellcasting system
-        const spellResult = calculateCompleteSpellResult(ingredients, incantations);
-        
+        const spellResult = calculateCompleteSpellResult(
+          ingredients,
+          incantations
+        );
+
         const timestamp = new Date().toISOString();
         const success = spellResult.success;
-        const message = success ? spellResult.spellDescription : 'Spell failed to cast correctly.';
+        const message = success
+          ? spellResult.spellDescription
+          : 'Spell failed to cast correctly.';
 
         // Create log entry
         const logEntry: SpellCastLog = {
@@ -82,7 +90,7 @@ export default {
           incantations,
           success,
           message,
-          spellResult
+          spellResult,
         };
 
         // Get existing logs from KV
@@ -159,17 +167,17 @@ export default {
         const { ingredients = [], incantations = [] } = data;
 
         // Generate visualization data without actually casting the spell
-        const visualizationData = generateVisualizationData(ingredients, incantations);
-        
-        return new Response(
-          JSON.stringify(visualizationData),
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              ...corsHeaders,
-            },
-          }
+        const visualizationData = generateVisualizationData(
+          ingredients,
+          incantations
         );
+
+        return new Response(JSON.stringify(visualizationData), {
+          headers: {
+            'Content-Type': 'application/json',
+            ...corsHeaders,
+          },
+        });
       } catch (error) {
         return new Response(
           JSON.stringify({
@@ -186,7 +194,7 @@ export default {
         );
       }
     }
-    
+
     // For other endpoints, only allow GET requests
     if (request.method !== 'GET') {
       return new Response('Method not allowed', {

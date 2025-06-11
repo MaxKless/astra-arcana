@@ -1,7 +1,4 @@
-import { MoonPhase } from '@astra-arcana/spellcasting-types';
-
-// Extended element type to include our hexagonal system
-export type HexElement = 'fire' | 'water' | 'earth' | 'air' | 'aether' | 'void';
+import { HexElement, MoonPhase } from '@astra-arcana/spellcasting-types';
 
 // Element relationship structure
 export interface ElementRelationship {
@@ -9,22 +6,6 @@ export interface ElementRelationship {
   baseValue: number;
   oppositeId: HexElement;
   neighbors: HexElement[];
-}
-
-// Special effect structure
-export interface SpecialEffect {
-  name: string;
-  description: string;
-  elements?: string;
-  element?: HexElement;
-}
-
-// Element effect
-export interface ElementEffect {
-  element: HexElement;
-  effect: string;
-  strength: 'strong' | 'moderate' | 'subtle';
-  proportion: number;
 }
 
 // Processed ingredient
@@ -45,27 +26,4 @@ export interface ProcessedIncantation {
   duration: number;
   complexity: number;
   name: string;
-}
-
-// Basic spell result structure
-export interface SpellResult {
-  success: boolean;
-  successRate: number;
-  power: number;
-  duration: number;
-  dominantElement?: HexElement;
-  elementalBalance: Record<HexElement, number>;
-  interactionModifier: number;
-  ingredients: string[];
-  incantations: string[];
-}
-
-// Complete spell result with effects
-export interface CompleteSpellResult extends SpellResult {
-  effects: ElementEffect[];
-  specialEffect: SpecialEffect | null;
-  effectStrength: number;
-  durationDescription: string;
-  successDescription: string;
-  spellDescription: string;
 }

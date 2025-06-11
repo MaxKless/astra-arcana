@@ -7,7 +7,19 @@ import {
   Language,
   MoonPhase,
   SpellVisualizationData,
+  CompleteSpellResult,
 } from '@astra-arcana/spellcasting-types';
+
+type CastSpellReturn = {
+  success: boolean;
+  message: string;
+  timestamp: string;
+  details: {
+    ingredients_count: number;
+    incantations_count: number;
+  };
+  spellResult: CompleteSpellResult;
+};
 
 // Interface for spell cast logs
 export interface SpellCastLog {
@@ -264,7 +276,7 @@ export class SpellcastingSDK {
   async castSpell(
     ingredients: Ingredient[] | string[],
     incantations: Incantation[] | string[]
-  ): Promise<any> {
+  ): Promise<CastSpellReturn> {
     try {
       // Validate and convert if strings were provided
       let validIngredients: Ingredient[];
@@ -301,7 +313,7 @@ export class SpellcastingSDK {
         throw new Error(`Failed to cast spell: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as CastSpellReturn;
       return data;
     } catch (error) {
       console.error('Error casting spell:', error);
