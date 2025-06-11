@@ -1,18 +1,18 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>com.astra-arcana.jetbrains</id>
+  <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+  <id>com.astra-arcana.jetbrains</id>
 
-    <!-- Public plugin name should be written in Title Case.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Astra Arcana Spellcasting</name>
+  <!-- Public plugin name should be written in Title Case.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+  <name>Astra Arcana Spellcasting</name>
 
-    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://astra-arcana.com">Astra Arcana</vendor>
+  <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+  <vendor url="https://astra-arcana.com">Astra Arcana</vendor>
 
-    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description><![CDATA[
+  <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+  <description><![CDATA[
     Astra Arcana Spellcasting plugin for IntelliJ IDEA.<br>
     <br>
     Features:<br>
@@ -24,18 +24,21 @@
     <em>Powered by the Astra Arcana Spellcasting SDK for Kotlin</em>
   ]]></description>
 
-    <!-- Product and plugin compatibility requirements.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.modules.ultimate</depends>
-    <depends>JavaScript</depends>
+  <!-- Product and plugin compatibility requirements.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.ultimate</depends>
+  <depends>JavaScript</depends>
 
-    <!-- Extension points defined by the plugin.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
-    <extensions defaultExtensionNs="com.intellij">
-      <notificationGroup displayType="STICKY_BALLOON" id="Astra Arcana"/>
-    </extensions>
+  <!-- Extension points defined by the plugin.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+  <extensions defaultExtensionNs="com.intellij">
+    <notificationGroup displayType="STICKY_BALLOON" id="Astra Arcana"/>
+  </extensions>
 
 
-
+  <actions>
+    <action id="com.astraarcana.jetbrains.actions.SpellCastAction"
+            class="com.astraarcana.jetbrains.actions.SpellCastAction" text="Astra Arcana: Cast Spell"/>
+  </actions>
 </idea-plugin>
