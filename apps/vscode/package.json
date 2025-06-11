@@ -11,6 +11,10 @@
     "Other"
   ],
   "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
   "contributes": {
     "commands": [
       {
