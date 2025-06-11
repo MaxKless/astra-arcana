@@ -15,14 +15,7 @@
     "onLanguage:typescriptreact"
   ],
   "main": "./extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "astra-arcana.cast-spell",
-        "title": "cast spell"
-      }
-    ]
-  },
+  "contributes": {},
   "scripts": {
     "vscode:prepublish": "npm run package",
     "package": "webpack --mode production --devtool hidden-source-map",
@@ -33,22 +26,6 @@
     "test": "vscode-test"
   },
   "nx": {
-    "name": "vscode",
-    "implicitDependencies": [
-      "@astra-arcana/language-server"
-    ],
-    "targets": {
-      "copy-language-server": {
-        "command": "mkdir -p apps/vscode/dist/language-server && cp apps/language-server/dist/main.js apps/vscode/dist/language-server/main.js",
-        "dependsOn": [
-          "^build"
-        ]
-      },
-      "build": {
-        "dependsOn": [
-          "copy-language-server"
-        ]
-      }
-    }
+    "name": "vscode"
   }
 }
