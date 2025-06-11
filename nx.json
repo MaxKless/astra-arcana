@@ -116,5 +116,8 @@
         "linter": "eslint"
       }
     }
+  },
+  "sync": {
+    "applyChanges": true
   }
 }

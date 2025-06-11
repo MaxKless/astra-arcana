@@ -24,6 +24,7 @@ module.exports = {
       optimization: false,
       externalDependencies: ['vscode'],
       generatePackageJson: true,
+      sourceMap: true
     }),
   ],
 };
